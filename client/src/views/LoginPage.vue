@@ -1,5 +1,17 @@
 <script>
-
+import { mapActions } from 'pinia';
+import { useCounterStore } from '../stores/counter';
+export default {
+    data(){
+        return{
+            email: '',
+            password: ""
+        }
+    },
+    methods: {
+        ...mapActions(useCounterStore, ['login'])
+    }
+}
 </script>
 
 <template>
@@ -17,21 +29,21 @@
                 </svg>
             </div>
             <h3 class="text-2xl font-bold text-center">Login to your account</h3>
-            <form action="">
+            <form action="" @submit.prevent="login(email, password)">
                 <div class="mt-4 mb-4" style="margin-left: 5%; margin-right: 5%;">
                     <div>
                         <label class="block" for="email">Email</label>
-                                <input type="text" placeholder="Email"
+                                <input type="text" placeholder="Email" v-model="email"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="mt-4">
                         <label class="block">Password</label>
-                                <input type="password" placeholder="Password"
+                                <input type="password" placeholder="Password" v-model="password"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="flex items-baseline justify-center mt-4">
                         <button
-                            class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Login</button>
+                            class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" type="submit">Login</button>
                     </div>
                 </div>
             </form>

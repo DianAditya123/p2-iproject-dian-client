@@ -1,6 +1,19 @@
 <script>
-export default {
+import { mapActions } from 'pinia';
+import { useCounterStore } from '../stores/counter';
 
+export default {
+    data(){
+        return{
+            username: "",
+            email: "",
+            password: "",
+            phoneNumber: ""
+        }
+    },
+    methods: {
+        ...mapActions(useCounterStore, ['register'])
+    }
 }
 </script>
 
@@ -19,30 +32,30 @@ export default {
                 </svg>
             </div>
             <h3 class="text-2xl font-bold text-center">Create new account</h3>
-            <form action="">
+            <form action="" @submit.prevent="register(username, email, password, phoneNumber)">
                 <div class="mt-4 mb-4" style="margin-left: 5%; margin-right: 5%;">
                     <div>
                         <label class="block" for="name">Username</label>
-                                <input type="text" placeholder="Username" id="name"
+                                <input type="text" placeholder="Username" id="name" v-model="username"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div>
                         <label class="block" for="email">Email</label>
-                                <input type="email" placeholder="Email" id="email"
+                                <input type="email" placeholder="Email" id="email" v-model="email"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="mt-4">
                         <label class="block" for="password">Password</label>
-                                <input type="password" placeholder="Password" id="password"
+                                <input type="password" placeholder="Password" id="password" v-model="password"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="mt-4">
                         <label class="block" for="phone">Phone Number</label>
-                                <input type="text" placeholder="Phone Number" id="phone"
+                                <input type="text" placeholder="Phone Number" id="phone" v-model="phoneNumber"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     </div>
                     <div class="flex items-baseline justify-center mt-4">
-                        <button class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Sign
+                        <button class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" type="submit">Sign
                             up</button>
                     </div>
                 </div>
