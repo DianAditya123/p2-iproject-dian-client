@@ -5,6 +5,8 @@ import RegisterPage from '../views/RegisterPage.vue'
 import ListPage from '../views/ListPage.vue'
 import FotoPage from '../views/FotoPage.vue'
 import PhPage from '../views/PhPage.vue'
+import FormCart from '../views/FormCart.vue'
+import CartPage from '../views/CartPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +40,16 @@ const router = createRouter({
       path: "/ph",
       name: "ph",
       component: PhPage
+    },
+    {
+      path: '/addcart',
+      name: 'addcart',
+      component: FormCart
+    },
+    {
+      path: '/cart',
+      name: "cart",
+      component: CartPage
     }
   ]
 })

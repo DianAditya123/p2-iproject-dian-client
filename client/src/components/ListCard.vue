@@ -6,7 +6,7 @@ export default {
 
 <template>
     <center>
-        <div class="block rounded-lg p-4 shadow-sm shadow-indigo-100" id="list">
+        <div class="block rounded-lg p-4 shadow-md shadow-indigo-100" id="list">
             <img alt="Home" v-if="item.title === 'Foto Keluarga'"
                 src="https://1.bp.blogspot.com/-IiaRXV6z9NQ/XRfuW2XIjoI/AAAAAAAAD0g/dfavDQbVGpQBMa5SmMhGP-8hxxvCqXaPACEwYBhgL/s640/pose-miring-foto-keluarga-di-studio.jpg"
                 class="h-56 w-full rounded-md object-cover" />

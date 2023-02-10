@@ -54,6 +54,10 @@ export default {
                         <a href="#"
                             class="block py-2 pl-3 pr-4 text-gray-400 rounded hover:bg-white hover:underline md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><RouterLink to="/ph">Photografer</RouterLink></a>
                     </li>
+                    <li>
+                        <a href="#" v-if="isAuth === true"
+                            class="block py-2 pl-3 pr-4 text-gray-400 rounded hover:bg-white hover:underline md:hover:bg-transparent md:hover:text-white md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><RouterLink to="/cart">Cart</RouterLink></a>
+                    </li>
                 </ul>
             </div>
         </div>

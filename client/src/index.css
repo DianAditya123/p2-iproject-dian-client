@@ -163,3 +163,10 @@ h5{
     background-color: rgb(43, 43, 43);
     justify-content: center;
 }
+
+.cart{
+    padding: 100px 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(43, 43, 43);
+}

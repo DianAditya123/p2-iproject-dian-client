@@ -9,7 +9,8 @@ export const useCounterStore = defineStore('counter', {
       isAuth: false,
       Phs: [],
       fotos: [],
-      types: []
+      types: [],
+      carts: []
     }
   },
   getters: {},
@@ -77,6 +78,93 @@ export const useCounterStore = defineStore('counter', {
           url: BASE_URL + '/type'
         })
         this.types = data
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async addCart(PhotograferId, TypeId, address, date){
+      try {
+        let {data} = await axios({
+          method: 'post',
+          url: BASE_URL + '/cart',
+          headers: {
+            access_token: localStorage.access_token
+          },
+          data: {
+            PhotograferId,
+            TypeId,
+            address,
+            date
+          }
+        })
+        this.router.push('/foto')
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async showCart(){
+      try {
+        let {data} = await axios({
+          method: 'get',
+          url: BASE_URL + '/cart',
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        this.carts = data
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async updateStatus(id){
+      try {
+        let {data} = await axios({
+          method: "patch",
+          url: BASE_URL + `/cart/${id}`,
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+        this.showCart()
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    
+    async payment(id){
+      try {
+        let {data} = await axios({
+          method: "post",
+          url: BASE_URL + `/generate-token/${id}`,
+          headers: {
+            access_token: localStorage.access_token
+          }
+        })
+
+        const cb = this.updateStatus
+
+        window.snap.pay(data.token, {
+          onSuccess: function(result){
+            /* You may add your own implementation here */
+            cb(id)
+            alert("payment success!"); console.log(result);
+          },
+          onPending: function(result){
+            /* You may add your own implementation here */
+            alert("wating your payment!"); console.log(result);
+          },
+          onError: function(result){
+            /* You may add your own implementation here */
+            alert("payment failed!"); console.log(result);
+          },
+          onClose: function(){
+            /* You may add your own implementation here */
+            alert('you closed the popup without finishing the payment');
+          }
+        })
       } catch (error) {
         console.log(error);
       }
